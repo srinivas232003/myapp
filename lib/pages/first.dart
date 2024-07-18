@@ -29,32 +29,32 @@
 //       appBar: AppBar(
 //         title: const Text('First Page'),
 //       ),
-//       drawer: Drawer(
-//           backgroundColor: Color.fromARGB(255, 108, 65, 143),
-//           child: Column(
-//             children: [
-//               DrawerHeader(
-//                 child: Icon(
-//                   Icons.favorite,
-//                   size: 48,
-//                 ),
-//               ),
-//               ListTile(
-//                 leading: Icon(Icons.home),
-//                 title: Text("HOME"),
-//                 onTap: () {
-//                   // Handle item 1 tap
-//                 },
-//               ),
-//               ListTile(
-//                 leading: Icon(Icons.settings),
-//                 title: Text("SETTINGS"),
-//                 onTap: () {
-//                   // Handle item 1 tap
-//                 },
-//               ),
-//             ],
-//           )),
+// drawer: Drawer(
+//     backgroundColor: Color.fromARGB(255, 108, 65, 143),
+//     child: Column(
+//       children: [
+//         DrawerHeader(
+//           child: Icon(
+//             Icons.favorite,
+//             size: 48,
+//           ),
+//         ),
+//         ListTile(
+//           leading: Icon(Icons.home),
+//           title: Text("HOME"),
+//           onTap: () {
+//             // Handle item 1 tap
+//           },
+//         ),
+//         ListTile(
+//           leading: Icon(Icons.settings),
+//           title: Text("SETTINGS"),
+//           onTap: () {
+//             // Handle item 1 tap
+//           },
+//         ),
+//       ],
+//     )),
 //       bottomNavigationBar: BottomNavigationBar(
 //         currentIndex: _selectedIndex,
 //         onTap: _indexChanged,
@@ -83,6 +83,7 @@
 // import 'package:bottom_tab_app/pages/settings.dart';
 // import 'chat.dart';
 // import 'dashboard.dart';
+
 import 'package:flutter/material.dart';
 import 'package:myapp/pages/profile.dart';
 import 'package:myapp/pages/home.dart';
@@ -100,39 +101,14 @@ class _HomeState extends State<Home> {
     HomePage(),
     SecondPage(),
     Settings(),
+    HomePage(),
   ]; // to store nested tabs
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget currentScreen = Home(); // Our first view in viewport
+  Widget currentScreen = HomePage(); // Our first view in viewport
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-          backgroundColor: Color.fromARGB(255, 108, 65, 143),
-          child: Column(
-            children: [
-              DrawerHeader(
-                child: Icon(
-                  Icons.favorite,
-                  size: 48,
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.home),
-                title: Text("HOME"),
-                onTap: () {
-                  // Handle item 1 tap
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.settings),
-                title: Text("SETTINGS"),
-                onTap: () {
-                  // Handle item 1 tap
-                },
-              ),
-            ],
-          )),
       body: PageStorage(
         child: currentScreen,
         bucket: bucket,
@@ -149,19 +125,19 @@ class _HomeState extends State<Home> {
           height: 60,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
+            children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  buildTabIcon(0, Icons.dashboard, 'Dashboard'),
-                  buildTabIcon(1, Icons.chat, 'Chats'),
+                children: [
+                  buildTabIcon(0, Icons.home, 'Home'),
+                  buildTabIcon(1, Icons.money, 'Transactions'),
                 ],
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  buildTabIcon(2, Icons.person, 'Profile'),
-                  buildTabIcon(3, Icons.settings, 'Settings'),
+                children: [
+                  buildTabIcon(2, Icons.pie_chart_rounded, 'Budget'),
+                  buildTabIcon(3, Icons.analytics_rounded, 'Overview'),
                 ],
               ),
             ],
@@ -182,7 +158,7 @@ class _HomeState extends State<Home> {
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
+        children: [
           Icon(
             icon,
             color: currentTab == index

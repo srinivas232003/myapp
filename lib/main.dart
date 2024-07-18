@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:myapp/pages/first.dart';
 import 'package:myapp/pages/profile.dart';
+// import 'package:myapp/pages/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());

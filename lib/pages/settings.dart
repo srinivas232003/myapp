@@ -9,7 +9,7 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('Settings'),
+        child: Text('Budgets Comming soon!!'),
       ),
     );
   }
