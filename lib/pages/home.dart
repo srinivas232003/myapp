@@ -244,9 +244,230 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
+              SegmentedControlWidget(),
+              const SizedBox(height: 20),
+              TransactionItem(
+                icon: Icons.shopping_bag,
+                iconColor: Colors.orange,
+                title: 'Shopping',
+                subtitle: 'Buy some grocery',
+                amount: '- \$120',
+                time: '10:00 AM',
+                amountColor: Colors.red,
+              ),
+              TransactionItem(
+                icon: Icons.subscriptions,
+                iconColor: Colors.purple,
+                title: 'Subscription',
+                subtitle: 'Disney+ Annual..',
+                amount: '- \$80',
+                time: '03:30 PM',
+                amountColor: Colors.red,
+              ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class SegmentedControlWidget extends StatefulWidget {
+  @override
+  _SegmentedControlWidgetState createState() => _SegmentedControlWidgetState();
+}
+
+class _SegmentedControlWidgetState extends State<SegmentedControlWidget> {
+  String _selectedSegment = 'Today';
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Container(
+          padding: EdgeInsets.all(2.0),
+          decoration: BoxDecoration(
+            // color: Colors.grey[200],
+            borderRadius: BorderRadius.circular(24.0),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              _buildSegment('Today'),
+              _buildSegment('Week'),
+              _buildSegment('Month'),
+              _buildSegment('Year'),
+            ],
+          ),
+        ),
+        SizedBox(height: 20.0),
+        Text(
+          'Selected: $_selectedSegment',
+          style: TextStyle(fontSize: 20),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSegment(String segment) {
+    bool isSelected = _selectedSegment == segment;
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            _selectedSegment = segment;
+          });
+        },
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 8.0),
+          decoration: BoxDecoration(
+            color: isSelected ? Colors.orange : Colors.transparent,
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          child: Text(
+            segment,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: isSelected ? Colors.white : Colors.black,
+              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TransactionList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: EdgeInsets.all(8.0),
+      children: [
+        TransactionItem(
+          icon: Icons.shopping_bag,
+          iconColor: Colors.orange,
+          title: 'Shopping',
+          subtitle: 'Buy some grocery',
+          amount: '- \$120',
+          time: '10:00 AM',
+          amountColor: Colors.red,
+        ),
+        TransactionItem(
+          icon: Icons.subscriptions,
+          iconColor: Colors.purple,
+          title: 'Subscription',
+          subtitle: 'Disney+ Annual..',
+          amount: '- \$80',
+          time: '03:30 PM',
+          amountColor: Colors.red,
+        ),
+        TransactionItem(
+          icon: Icons.fastfood,
+          iconColor: Colors.red,
+          title: 'Food',
+          subtitle: 'Buy a ramen',
+          amount: '- \$32',
+          time: '07:30 PM',
+          amountColor: Colors.red,
+        ),
+      ],
+    );
+  }
+}
+
+class TransactionItem extends StatelessWidget {
+  final IconData icon;
+  final Color iconColor;
+  final String title;
+  final String subtitle;
+  final String amount;
+  final String time;
+  final Color amountColor;
+
+  TransactionItem({
+    required this.icon,
+    required this.iconColor,
+    required this.title,
+    required this.subtitle,
+    required this.amount,
+    required this.time,
+    required this.amountColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 8.0),
+      padding: EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            padding: EdgeInsets.all(12.0),
+            decoration: BoxDecoration(
+              color: iconColor.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            child: Icon(icon, color: iconColor, size: 30.0),
+          ),
+          SizedBox(width: 16.0),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 4.0),
+                Text(
+                  subtitle,
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                amount,
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                  color: amountColor,
+                ),
+              ),
+              SizedBox(height: 4.0),
+              Text(
+                time,
+                style: TextStyle(
+                  fontSize: 14.0,
+                  color: Colors.grey,
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

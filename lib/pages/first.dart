@@ -89,6 +89,7 @@ import 'package:myapp/pages/profile.dart';
 import 'package:myapp/pages/home.dart';
 import 'package:myapp/pages/settings.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:myapp/pages/transaction.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -115,7 +116,9 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/add');
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(

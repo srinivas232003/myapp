@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:myapp/pages/first.dart';
 import 'package:myapp/pages/profile.dart';
+import 'package:myapp/pages/transaction.dart';
 // import 'package:myapp/pages/splash_screen.dart';
 
 void main() {
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/home': (context) => Home(), // Define the '/home' route
+        '/add': (context) => NewTransaction(),
       },
     );
   }
